@@ -1,47 +1,37 @@
 import React from "react";
+import hapus from "../img/delete.png";
+import edit from "../img/edit.png";
 
-function List({ dataPerson, handleEdit }) {
+function List({ dataPerson, setDataPerson, handleEdit }) {
+  const handleDelete = (id) => {
+    let data = [...dataPerson];
+    let filterData = data.filter((person) => person.id !== id);
+    setDataPerson(filterData);
+  };
+
   return (
-    <section className="mt-8">
-      <h1 className="text-md font-semibold text-center">Table Data</h1>
-      <table className="table-auto w-1/2 mx-auto scale-90 ">
-        <thead className="bg-gray-200 text-lg h-10">
-          <tr>
-            <th className="p-2 font-medium text-lg text-slate-700 text-center">
-              No
-            </th>
-            <th className="p-2 font-medium text-lg text-slate-700 text-left">
-              Nama
-            </th>
-            <th className="p-2 font-medium text-lg text-slate-700 text-left p-2">
-              Telepon
-            </th>
-            <th className="p-2 font-medium text-lg text-slate-700 text-center p-2">
-              Action
-            </th>
-          </tr>
-        </thead>
-        <tbody className="bg-gray-100">
-          {dataPerson.map((res, index) => (
-            <tr className="h-10" key={res.id}>
-              <td className="shadow-sm p-2 text-center">{index + 1}</td>
-              <td className="shadow-sm p-2">{res.nama}</td>
-              <td className="shadow-sm p-2">{res.telepon}</td>
-              <td className="shadow-sm p-2 mx-auto text-center">
-                <button
-                  onClick={() => handleEdit(dataPerson.id)}
-                  className="p-2 bg-green-400 text-white rounded-md mr-4"
-                >
-                  edit
-                </button>
-                <button className="p-2 bg-red-400 text-white rounded-md">
-                  delete
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <section className="w-full px-10 ">
+      {dataPerson.map((res) => (
+        <div
+          className="flex justify-between mb-2 bg-white mt-2 border-l-8 bg-white items-center border-blue-500"
+          key={res.id}
+        >
+          <button className="w-11/12" onClick={() => handleEdit(res.id)}>
+            <div className=" p-2 text-left px-2">
+              <h1 className="text-md font-semibold text-blue-500">
+                {res.nama}
+              </h1>
+              <p className="text-sm font-light text-[#333]">{res.telepon}</p>
+            </div>
+          </button>
+
+          <div className="shadow-sm p-2  text-center">
+            <button onClick={() => handleDelete(res.id)}>
+              <img src={hapus} alt="delete" className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      ))}
     </section>
   );
 }

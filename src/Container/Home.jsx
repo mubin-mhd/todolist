@@ -14,18 +14,8 @@ function Home() {
   const [dataPerson, setDataPerson] = useState([
     {
       id: 1,
-      nama: "mubin",
-      telepon: 628378484747,
-    },
-    {
-      id: 2,
-      nama: "anggi",
-      telepon: 628378484345,
-    },
-    {
-      id: 3,
-      nama: "vita",
-      telepon: 62837846565,
+      nama: "apa yang mau kamu kerjakan?",
+      telepon: "tulis sekarang, nanti lupa",
     },
   ]);
 
@@ -69,29 +59,29 @@ function Home() {
     });
   }
 
-  function handleEdit(id) {
+  const handleEdit = (id) => {
     let data = [...dataPerson];
-    let foundData = data.find((person) => person.id === id);
-    console.log(foundData);
+    let foundData = data.find((result) => result.id == id);
     setFormulir({ nama: foundData.nama, telepon: foundData.telepon });
-    setIsUpdate({
-      id: id,
-      status: true,
-    });
-  }
+    setIsUpdate({ id: id, status: true });
+  };
 
   return (
-    <div>
-      <Formulir
-        formulir={formulir}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-      />
-      <List
-        dataPerson={dataPerson}
-        handleEdit={handleEdit}
-        setFormulir={setFormulir}
-      />
+    <div className="bg-yellow-300 h-screen">
+      <div className="bg-gray-100 pb-10 max-w-xl mx-auto rounded-md shadow-xl">
+        <Formulir
+          formulir={formulir}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+        />
+        <List
+          dataPerson={dataPerson}
+          setFormulir={setFormulir}
+          setIsUpdate={setIsUpdate}
+          setDataPerson={setDataPerson}
+          handleEdit={handleEdit}
+        />
+      </div>
     </div>
   );
 }
