@@ -3,11 +3,11 @@ import plus from "../img/plus.png";
 
 function Formulir({ formulir, handleChange, handleSubmit }) {
   return (
-    <section className="mx-auto">
+    <section className="mx-auto overflow-x-hidden">
       <div className="p-4 font-semibold text-slate-700 text-2xl border-b-2">
         Form Todo
       </div>
-      <form className="relative  px-10 py-2" onSubmit={handleSubmit}>
+      <form className="relative px-10 py-2" onSubmit={handleSubmit}>
         <div>
           <input
             type="text"
